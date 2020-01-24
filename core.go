@@ -94,11 +94,23 @@ func (this *Item)Compress() (buffer []byte, err error){
 		b.Write([]byte("\",\n\t\tContentType: \""))
 		switch path.Ext(f) {
 		case ".js":
-			b.WriteString("application/javascript; charset=utf-8")
+			b.WriteString("text/javascript; charset=utf-8")
+		case ".json":
+			b.WriteString("application/json; charset=utf-8")
 		case ".css":
 			b.WriteString("text/css; charset=utf-8")
-		case ".html", ".htm", ".php":
+		case ".mp3":
+			b.WriteString("audio/mpeg")
+		case ".mpeg":
+			b.WriteString("video/mpeg")
+		case ".html", ".htm":
 			b.WriteString("text/html; charset=utf-8")
+		case ".xhtml":
+			b.WriteString("application/xhtml+xml; charset=utf-8")
+		case ".php":
+			b.WriteString("application/php; charset=utf-8")
+		case ".bmp":
+			b.WriteString("image/bmp")
 		case ".jpg", "jpeg":
 			b.WriteString("image/jpeg")
 		case ".gif":
@@ -109,10 +121,14 @@ func (this *Item)Compress() (buffer []byte, err error){
 			b.WriteString("image/svg+xml")
 		case ".webp":
 			b.WriteString("image/webp")
+		case ".webm":
+			b.WriteString("video/webm")
 		case ".xml":
 			b.WriteString("text/xml; charset=utf-8")
 		case ".pdf":
 			b.WriteString("application/pdf")
+		case ".rtf":
+			b.WriteString("application/rtf")
 		case ".otf":
 			b.WriteString("font/otf")
 		case ".ttf":
@@ -121,6 +137,8 @@ func (this *Item)Compress() (buffer []byte, err error){
 			b.WriteString("font/woff")
 		case ".woff2":
 			b.WriteString("font/woff2")
+		case ".eot":
+			b.WriteString("application/vnd.ms-fontobject")
 		default:
 			b.WriteString("text/plain; charset=utf-8")
 		}
